@@ -1,11 +1,16 @@
-﻿[UsesVerify]
+﻿using Serilog;
+using VerifyTests.Serilog;
+
+[UsesVerify]
 public class Tests
 {
     [Fact]
     public Task LoggingTyped()
     {
         var provider = LoggerRecording.Start();
-        var logger = provider.CreateLogger<ClassThatUsesTypedLogging>();
+        
+        Log.ForContext()
+        Log.Debug(); = 
         ClassThatUsesTypedLogging target = new(logger);
 
         var result = target.Method();
