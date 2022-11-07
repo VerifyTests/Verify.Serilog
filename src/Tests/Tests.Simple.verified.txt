@@ -1,0 +1,9 @@
+﻿{
+  target: Result,
+  logs: [
+    {
+      MessageTemplate: The Message,
+      Level: Error
+    }
+  ]
+}

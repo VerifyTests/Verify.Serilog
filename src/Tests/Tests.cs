@@ -5,16 +5,18 @@ using VerifyTests.Serilog;
 public class Tests
 {
     [Fact]
-    public Task LoggingTyped()
+    public Task Simple()
     {
-        var provider = LoggerRecording.Start();
-        
-        Log.ForContext()
-        Log.Debug(); = 
-        ClassThatUsesTypedLogging target = new(logger);
+        RecordingLogger.Start();
 
-        var result = target.Method();
+        var result = Method();
 
         return Verify(result);
+    }
+
+    static string Method()
+    {
+        Log.Error("The Message");
+        return "Result";
     }
 }
