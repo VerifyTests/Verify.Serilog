@@ -4,12 +4,10 @@
     public override void Write(VerifyJsonWriter writer, LogEvent logEvent)
     {
         writer.WriteStartObject();
-        writer.WritePropertyName("MessageTemplate");
-        writer.Serialize(logEvent.MessageTemplate.Text);
-        writer.WritePropertyName("Level");
-        writer.Serialize(logEvent.Level);
-        writer.WritePropertyName("Properties");
-        writer.Serialize(logEvent.Properties);
+        var template = logEvent.MessageTemplate;
+        writer.WriteMember(template, template.Text, "MessageTemplate");
+        writer.WriteMember(logEvent, logEvent.Level, "Level");
+        writer.WriteMember(logEvent, logEvent.Properties, "Properties");
         writer.WriteEndObject();
     }
 }

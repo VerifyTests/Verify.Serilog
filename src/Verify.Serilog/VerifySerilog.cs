@@ -4,7 +4,6 @@ public static class VerifySerilog
 {
     public static void Enable()
     {
-        
         VerifierSettings.AddExtraSettings(_ =>
         {
             _.Converters.Add(new LogEventPropertyConverter());
@@ -12,14 +11,20 @@ public static class VerifySerilog
             _.Converters.Add(new ScalarValueConverter());
             _.Converters.Add(new PropertyEnricherConverter());
         });
-        VerifierSettings.RegisterJsonAppender(_ =>
-        {
-            if (!LoggerRecording.TryFinishRecording(out var entries))
+        VerifierSettings.RegisterJsonAppender(
+            _ =>
             {
-                return null;
-            }
+                if (!RecordingLogger.TryFinishRecording(out var entries))
+                {
+                    return null;
+                }
 
-            return new("logs", entries!);
-        });
+                return new("logs", entries!);
+            });
+
+        Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Verbose()
+            .WriteTo.Sink<VerifySink>()
+            .CreateLogger();
     }
 }
