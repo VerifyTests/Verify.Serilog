@@ -1,0 +1,12 @@
+﻿{
+  target: Result,
+  logs: [
+    {
+      MessageTemplate: The Message,
+      Level: Error,
+      Properties: {
+        key: value
+      }
+    }
+  ]
+}

@@ -1,6 +1,4 @@
-﻿using VerifyTests.Serilog;
-
-namespace VerifyTests;
+﻿namespace VerifyTests;
 
 public static class VerifySerilog
 {
@@ -24,6 +22,9 @@ public static class VerifySerilog
                 return new("logs", entries!);
             });
 
-        Log.Logger = new RecordingLogger();
+        Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Verbose()
+            .WriteTo.Sink<VerifySink>()
+            .CreateLogger();
     }
 }
