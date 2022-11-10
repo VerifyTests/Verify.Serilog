@@ -1,4 +1,4 @@
-# <img src="/src/icon.png" height="30px"> Verify.MicrosoftLogging
+# <img src="/src/icon.png" height="30px"> Verify.Serilog
 
 [![Build status](https://ci.appveyor.com/api/projects/status/bgvkfjn26l5b4kba?svg=true)](https://ci.appveyor.com/project/SimonCropp/verify-serilog)
 [![NuGet Status](https://img.shields.io/nuget/v/Verify.Serilog.svg)](https://www.nuget.org/packages/Verify.Serilog/)
@@ -64,8 +64,3 @@ Results in:
 ```
 <sup><a href='/src/Tests/Tests.Usage.verified.txt#L1-L9' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests.Usage.verified.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
-
-
-## Icon
-
-[Log](https://thenounproject.com/term/log/324064/) designed by [Ben Davis](https://thenounproject.com/smashicons/) from [The Noun Project](https://thenounproject.com).
