@@ -1,6 +1,4 @@
-﻿using Serilog.Core.Enrichers;
-
-public class PropertyEnricherConverter :
+﻿public class PropertyEnricherConverter :
     WriteOnlyJsonConverter<PropertyEnricher>
 {
     static FieldInfo nameField;

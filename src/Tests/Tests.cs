@@ -4,8 +4,9 @@ using VerifyTests.Serilog;
 [UsesVerify]
 public class Tests
 {
+    #region usage
     [Fact]
-    public Task Simple()
+    public Task Usage()
     {
         RecordingLogger.Start();
 
@@ -13,6 +14,13 @@ public class Tests
 
         return Verify(result);
     }
+
+    static string Method()
+    {
+        Log.Error("The Message");
+        return "Result";
+    }
+    #endregion
 
     [Fact]
     public Task ForContext()
@@ -23,11 +31,5 @@ public class Tests
         logger.Error("The Message");
 
         return Verify("Result");
-    }
-
-    static string Method()
-    {
-        Log.Error("The Message");
-        return "Result";
     }
 }
