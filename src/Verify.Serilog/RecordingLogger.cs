@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace VerifyTests.Serilog;
 
 public static class RecordingLogger
@@ -13,7 +15,7 @@ public static class RecordingLogger
         tracker?.Enqueue(logEvent);
     }
 
-    public static bool TryFinishRecording(out IEnumerable<LogEvent>? entries)
+    public static bool TryFinishRecording([NotNullWhen(true)] out IEnumerable<LogEvent>? entries)
     {
         var events = local.Value;
 

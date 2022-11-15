@@ -19,7 +19,12 @@ public static class VerifySerilog
                     return null;
                 }
 
-                return new("logs", entries!);
+                if (!entries.Any())
+                {
+                    return null;
+                }
+
+                return new("logs", entries);
             });
 
         Log.Logger = new LoggerConfiguration()

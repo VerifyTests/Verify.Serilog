@@ -23,6 +23,13 @@ public class Tests
     #endregion
 
     [Fact]
+    public Task Empty()
+    {
+        RecordingLogger.Start();
+        return Verify("Result");
+    }
+
+    [Fact]
     public Task ForContext()
     {
         RecordingLogger.Start();
