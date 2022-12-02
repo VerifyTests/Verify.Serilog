@@ -2,8 +2,7 @@
   target: Result,
   logs: [
     {
-      MessageTemplate: The Message,
-      Level: Error,
+      Error: The Message,
       Properties: {
         key: value
       }

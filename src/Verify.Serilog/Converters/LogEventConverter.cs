@@ -5,8 +5,8 @@
     {
         writer.WriteStartObject();
         var template = logEvent.MessageTemplate;
-        writer.WriteMember(template, template.Text, "MessageTemplate");
-        writer.WriteMember(logEvent, logEvent.Level, "Level");
+        writer.WritePropertyName(logEvent.Level.ToString());
+        writer.WriteValue(template.Text);
         writer.WriteMember(logEvent, logEvent.Properties, "Properties");
         writer.WriteEndObject();
     }
