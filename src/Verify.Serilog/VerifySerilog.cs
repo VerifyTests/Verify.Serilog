@@ -4,6 +4,7 @@ public static class VerifySerilog
 {
     public static void Enable()
     {
+        InnerVerifier.ThrowIfVerifyHasBeenRun();
         VerifierSettings.AddExtraSettings(_ =>
         {
             _.Converters.Add(new LogEventPropertyConverter());
