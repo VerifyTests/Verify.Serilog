@@ -3,12 +3,12 @@
     #region Enable
 
     [ModuleInitializer]
-    public static void Initialize()
-    {
+    public static void Initialize() =>
         VerifySerilog.Enable();
 
-        #endregion
+    #endregion
 
-        VerifyDiffPlex.Initialize();
-    }
+    [ModuleInitializer]
+    public static void InitializeOther() =>
+        VerifySerilog.Enable();
 }
