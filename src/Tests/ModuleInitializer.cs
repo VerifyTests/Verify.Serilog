@@ -10,5 +10,5 @@
 
     [ModuleInitializer]
     public static void InitializeOther() =>
-        VerifySerilog.Enable();
+        VerifyDiffPlex.Initialize();
 }
