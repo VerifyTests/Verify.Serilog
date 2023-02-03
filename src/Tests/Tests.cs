@@ -1,10 +1,12 @@
 ﻿using Serilog;
+using Serilog.Events;
 using VerifyTests.Serilog;
 
 [UsesVerify]
 public class Tests
 {
     #region usage
+
     [Fact]
     public Task Usage()
     {
@@ -20,6 +22,7 @@ public class Tests
         Log.Error("The Message");
         return "Result";
     }
+
     #endregion
 
     [Fact]
@@ -28,6 +31,10 @@ public class Tests
         RecordingLogger.Start();
         return Verify("Result");
     }
+
+    [Fact]
+    public Task ScalarValueGuid() =>
+        Verify(new ScalarValue(Guid.NewGuid()));
 
     [Fact]
     public Task ForContext()
@@ -39,4 +46,13 @@ public class Tests
 
         return Verify("Result");
     }
+
+    [Fact]
+    public Task DictionaryValue() =>
+        Verify(
+            new DictionaryValue(
+                new List<KeyValuePair<ScalarValue, LogEventPropertyValue>>
+                {
+                    new(new(Guid.NewGuid()), new ScalarValue("value"))
+                }));
 }

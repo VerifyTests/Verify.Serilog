@@ -11,6 +11,7 @@ public static class VerifySerilog
             _.Converters.Add(new LogEventConverter());
             _.Converters.Add(new ScalarValueConverter());
             _.Converters.Add(new PropertyEnricherConverter());
+            _.Converters.Add(new DictionaryValueConverter());
         });
         VerifierSettings.RegisterJsonAppender(
             _ =>
