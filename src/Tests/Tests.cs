@@ -48,6 +48,27 @@ public class Tests
     }
 
     [Fact]
+    public Task TryFinishRecording()
+    {
+        RecordingLogger.Start();
+        var logger = Log.ForContext("key", "value");
+        logger.Error("The Message");
+        var result = RecordingLogger.TryFinishRecording(out var entries);
+        Assert.True(result);
+        return Verify(entries);
+    }
+
+    [Fact]
+    public Task FinishRecording()
+    {
+        RecordingLogger.Start();
+        var logger = Log.ForContext("key", "value");
+        logger.Error("The Message");
+        var entries = RecordingLogger.FinishRecording();
+        return Verify(entries);
+    }
+
+    [Fact]
     public Task DictionaryValue() =>
         Verify(
             new DictionaryValue(
