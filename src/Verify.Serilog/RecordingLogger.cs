@@ -15,10 +15,11 @@ public static class RecordingLogger
         tracker?.Enqueue(logEvent);
     }
 
-    public static bool TryFinishRecording([NotNullWhen(true)] out IEnumerable<LogEvent>? entries)
+    public static bool TryFinishRecording([NotNullWhen(true)] out IReadOnlyCollection<LogEvent>? entries)
     {
         var events = local.Value;
 
+        local.Value = null;
         if (events is null)
         {
             local.Value = null;
@@ -26,8 +27,20 @@ public static class RecordingLogger
             return false;
         }
 
-        entries = events.ToArray();
-        local.Value = null;
+        entries = events;
         return true;
+    }
+
+    public static IReadOnlyCollection<LogEvent> FinishRecording()
+    {
+        var events = local.Value;
+
+        local.Value = null;
+        if (events is null)
+        {
+            return Array.Empty<LogEvent>();
+        }
+
+        return events;
     }
 }
