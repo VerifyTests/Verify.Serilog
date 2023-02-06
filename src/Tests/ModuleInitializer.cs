@@ -4,11 +4,11 @@
 
     [ModuleInitializer]
     public static void Initialize() =>
-        VerifySerilog.Enable();
+        VerifySerilog.Initialize();
 
     #endregion
 
     [ModuleInitializer]
     public static void InitializeOther() =>
-        VerifyDiffPlex.Initialize();
+        VerifierSettings.InitializePlugins();
 }
