@@ -16,6 +16,7 @@ public static class VerifySerilog
         }
 
         Initialized = true;
+
         InnerVerifier.ThrowIfVerifyHasBeenRun();
         VerifierSettings.AddExtraSettings(_ =>
         {
