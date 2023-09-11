@@ -1,4 +1,6 @@
-﻿namespace VerifyTests;
+﻿using Argon;
+
+namespace VerifyTests;
 
 public static class VerifySerilog
 {
@@ -14,14 +16,12 @@ public static class VerifySerilog
         Initialized = true;
 
         InnerVerifier.ThrowIfVerifyHasBeenRun();
-        VerifierSettings.AddExtraSettings(_ =>
-        {
-            _.Converters.Add(new LogEventPropertyConverter());
-            _.Converters.Add(new LogEventConverter());
-            _.Converters.Add(new ScalarValueConverter());
-            _.Converters.Add(new PropertyEnricherConverter());
-            _.Converters.Add(new DictionaryValueConverter());
-        });
+        var converters = DefaultContractResolver.Converters;
+        converters.Add(new LogEventPropertyConverter());
+        converters.Add(new LogEventConverter());
+        converters.Add(new ScalarValueConverter());
+        converters.Add(new PropertyEnricherConverter());
+        converters.Add(new DictionaryValueConverter());
         VerifierSettings.RegisterJsonAppender(
             _ =>
             {
