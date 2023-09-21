@@ -6,6 +6,8 @@
 
 Extends [Verify](https://github.com/VerifyTests/Verify) to allow verification of [Serilog](https://serilog.net/) bits.
 
+**See [Milestones](../../milestones?state=closed) for release notes.**
+
 
 
 ## NuGet package
