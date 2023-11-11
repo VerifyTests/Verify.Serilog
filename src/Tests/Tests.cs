@@ -1,6 +1,5 @@
 ﻿using Serilog;
 using Serilog.Events;
-using VerifyTests.Serilog;
 
 [UsesVerify]
 public class Tests
@@ -10,7 +9,7 @@ public class Tests
     [Fact]
     public Task Usage()
     {
-        RecordingLogger.Start();
+        Recording.Start();
 
         var result = Method();
 
@@ -28,7 +27,7 @@ public class Tests
     [Fact]
     public Task Empty()
     {
-        RecordingLogger.Start();
+        Recording.Start();
         return Verify("Result");
     }
 
@@ -39,33 +38,12 @@ public class Tests
     [Fact]
     public Task ForContext()
     {
-        RecordingLogger.Start();
+        Recording.Start();
 
         var logger = Log.ForContext("key", "value");
         logger.Error("The Message");
 
         return Verify("Result");
-    }
-
-    [Fact]
-    public Task TryFinishRecording()
-    {
-        RecordingLogger.Start();
-        var logger = Log.ForContext("key", "value");
-        logger.Error("The Message");
-        var result = RecordingLogger.TryFinishRecording(out var entries);
-        Assert.True(result);
-        return Verify(entries);
-    }
-
-    [Fact]
-    public Task FinishRecording()
-    {
-        RecordingLogger.Start();
-        var logger = Log.ForContext("key", "value");
-        logger.Error("The Message");
-        var entries = RecordingLogger.FinishRecording();
-        return Verify(entries);
     }
 
     [Fact]

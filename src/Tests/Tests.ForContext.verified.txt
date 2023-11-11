@@ -1,11 +1,9 @@
 ﻿{
   target: Result,
-  logs: [
-    {
-      Error: The Message,
-      Properties: {
-        key: value
-      }
+  logs: {
+    Error: The Message,
+    Properties: {
+      key: value
     }
-  ]
+  }
 }

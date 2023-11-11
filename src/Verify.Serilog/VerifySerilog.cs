@@ -1,6 +1,4 @@
-﻿using Argon;
-
-namespace VerifyTests;
+﻿namespace VerifyTests;
 
 public static class VerifySerilog
 {
@@ -24,21 +22,6 @@ public static class VerifySerilog
             _.Converters.Add(new PropertyEnricherConverter());
             _.Converters.Add(new DictionaryValueConverter());
         });
-        VerifierSettings.RegisterJsonAppender(
-            _ =>
-            {
-                if (!RecordingLogger.TryFinishRecording(out var entries))
-                {
-                    return null;
-                }
-
-                if (!entries.Any())
-                {
-                    return null;
-                }
-
-                return new("logs", entries);
-            });
 
         Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Verbose()

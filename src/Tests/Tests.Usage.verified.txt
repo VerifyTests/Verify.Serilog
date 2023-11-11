@@ -1,8 +1,6 @@
 ﻿{
   target: Result,
-  logs: [
-    {
-      Error: The Message
-    }
-  ]
+  logs: {
+    Error: The Message
+  }
 }
