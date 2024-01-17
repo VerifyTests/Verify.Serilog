@@ -45,7 +45,7 @@ static string Method()
     return "Result";
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L7-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-usage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L6-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-usage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in:
