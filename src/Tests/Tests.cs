@@ -1,7 +1,6 @@
 ﻿using Serilog;
 using Serilog.Events;
 
-[UsesVerify]
 public class Tests
 {
     #region usage
