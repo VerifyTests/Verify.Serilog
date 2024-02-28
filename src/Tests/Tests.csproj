@@ -12,6 +12,6 @@
     <PackageReference Include="Verify.Xunit" Version="23.2.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <ProjectReference Include="..\Verify.Serilog\Verify.Serilog.csproj" />
-    <PackageReference Include="ProjectDefaults" Version="1.0.113" PrivateAssets="all" />
+    <PackageReference Include="ProjectDefaults" Version="1.0.114" PrivateAssets="all" />
   </ItemGroup>
 </Project>
