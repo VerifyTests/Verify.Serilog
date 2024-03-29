@@ -1,9 +1,6 @@
-﻿using Serilog;
-using Serilog.Events;
-
-public class Tests
+﻿public class Tests
 {
-    #region usage
+    #region Usage
 
     [Fact]
     public Task Usage()
