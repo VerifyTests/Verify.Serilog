@@ -1,23 +1,27 @@
 ﻿public class PropertyEnricherConverter :
     WriteOnlyJsonConverter<PropertyEnricher>
 {
-    static FieldInfo nameField;
-    static FieldInfo valueField;
+    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_name")]
+    static extern ref string Name(PropertyEnricher enricher);
 
-    static PropertyEnricherConverter()
-    {
-        var flags = BindingFlags.Instance | BindingFlags.NonPublic;
-        nameField = typeof(PropertyEnricher).GetField("_name", flags)!;
-        valueField = typeof(PropertyEnricher).GetField("_value", flags)!;
-    }
+    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_value")]
+    static extern ref object? Value(PropertyEnricher enricher);
 
     public override void Write(VerifyJsonWriter writer, PropertyEnricher enricher)
     {
         writer.WriteStartObject();
-        var name = (string) nameField.GetValue(enricher)!;
-        var value = valueField.GetValue(enricher)!;
+        var name = Name(enricher);
+        var value = Value(enricher);
         writer.WritePropertyName(name);
-        writer.Serialize(value);
+        if (value == null)
+        {
+            writer.WriteNull();
+        }
+        else
+        {
+            writer.Serialize(value);
+        }
+
         writer.WriteEndObject();
     }
 }
