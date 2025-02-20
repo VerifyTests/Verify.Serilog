@@ -41,13 +41,26 @@
 
         return Verify("Result");
     }
+    [Fact]
+    public Task LogContextPush()
+    {
+        Recording.Start();
+
+        using (LogContext.Push(
+                   new PropertyEnricher("Property1", new ScalarValue("Value1")),
+                   new PropertyEnricher("Property2", new ScalarValue("Value2"))))
+        {
+            Log.Error("The Message");
+        }
+
+        return Verify("Result");
+    }
 
     [Fact]
     public Task DictionaryValue() =>
         Verify(
             new DictionaryValue(
-                new List<KeyValuePair<ScalarValue, LogEventPropertyValue>>
-                {
+                [
                     new(new(Guid.NewGuid()), new ScalarValue("value"))
-                }));
+                ]));
 }
