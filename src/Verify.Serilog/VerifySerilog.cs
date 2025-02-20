@@ -25,6 +25,7 @@ public static class VerifySerilog
 
         Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
+            .Enrich.FromLogContext()
             .WriteTo.Sink<VerifySink>()
             .CreateLogger();
     }

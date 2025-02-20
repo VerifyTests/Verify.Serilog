@@ -1,0 +1,10 @@
+﻿{
+  target: Result,
+  log: {
+    Error: The Message,
+    Properties: {
+      Property1: "Value1",
+      Property2: "Value2"
+    }
+  }
+}
