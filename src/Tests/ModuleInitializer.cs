@@ -1,4 +1,7 @@
-﻿public static class ModuleInitializer
+﻿[assembly: Parallelizable(ParallelScope.All)]
+[assembly: LevelOfParallelism(48)]
+
+public static class ModuleInitializer
 {
     #region Enable
 
