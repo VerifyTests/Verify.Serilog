@@ -6,10 +6,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MarkdownSnippets.MsBuild" PrivateAssets="all" />
-    <PackageReference Include="xunit.v3" />
-    <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="NUnit3TestAdapter" PrivateAssets="all" />
     <PackageReference Include="Verify.DiffPlex" />
-    <PackageReference Include="Verify.XunitV3" />
+    <PackageReference Include="Verify.NUnit" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <ProjectReference Include="..\Verify.Serilog\Verify.Serilog.csproj" />
     <PackageReference Include="ProjectDefaults" PrivateAssets="all" />

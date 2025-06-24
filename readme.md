@@ -39,7 +39,7 @@ public static void Initialize() =>
 <!-- snippet: Usage -->
 <a id='snippet-Usage'></a>
 ```cs
-[Fact]
+[Test]
 public Task Usage()
 {
     Recording.Start();
@@ -55,7 +55,7 @@ static string Method()
     return "Result";
 }
 ```
-<sup><a href='/src/Tests/Tests.cs#L3-L21' title='Snippet source file'>snippet source</a> | <a href='#snippet-Usage' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/Tests.cs#L4-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-Usage' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Results in:

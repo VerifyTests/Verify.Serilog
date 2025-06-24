@@ -1,8 +1,9 @@
-﻿public class Tests
+﻿[TestFixture]
+public class Tests
 {
     #region Usage
 
-    [Fact]
+    [Test]
     public Task Usage()
     {
         Recording.Start();
@@ -20,18 +21,18 @@
 
     #endregion
 
-    [Fact]
+    [Test]
     public Task Empty()
     {
         Recording.Start();
         return Verify("Result");
     }
 
-    [Fact]
+    [Test]
     public Task ScalarValueGuid() =>
         Verify(new ScalarValue(Guid.NewGuid()));
 
-    [Fact]
+    [Test]
     public Task ForContext()
     {
         Recording.Start();
@@ -41,7 +42,8 @@
 
         return Verify("Result");
     }
-    [Fact]
+
+    [Test]
     public Task LogContextPush()
     {
         Recording.Start();
@@ -56,11 +58,11 @@
         return Verify("Result");
     }
 
-    [Fact]
+    [Test]
     public Task DictionaryValue() =>
         Verify(
             new DictionaryValue(
-                [
-                    new(new(Guid.NewGuid()), new ScalarValue("value"))
-                ]));
+            [
+                new(new(Guid.NewGuid()), new ScalarValue("value"))
+            ]));
 }
