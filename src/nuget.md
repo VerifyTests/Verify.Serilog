@@ -1,4 +1,4 @@
-[Documentation](https://github.com/VerifyTests/Verify.Serilo)
+[Documentation](https://github.com/VerifyTests/Verify.Serilog)
 
 Extends [Verify](https://github.com/VerifyTests/Verify) to allow verification of [Serilog](https://serilog.net/) bits.<!-- singleLineInclude: intro. path: /docs/intro.include.md -->
 
