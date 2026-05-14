@@ -1,0 +1,11 @@
+{
+  target: Result,
+  log: {
+    Information: Saw customer {@Customer},
+    Properties: {
+      Customer: {
+        Name: Bob
+      }
+    }
+  }
+}

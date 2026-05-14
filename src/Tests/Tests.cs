@@ -126,6 +126,20 @@ public class Tests
             .ScrubMember("Secret");
     }
 
+    #region CustomUsage
+
+    [Test]
+    public Task Custom()
+    {
+        Recording.Start();
+        Log.Information(
+            "Saw customer {@Customer}",
+            new Customer("Bob", "secret"));
+        return Verify("Result");
+    }
+
+    #endregion
+
     [Test]
     public Task IgnoreMemberInPropertyEnricher() =>
         Verify(new PropertyEnricher("Secret", "hideme"))

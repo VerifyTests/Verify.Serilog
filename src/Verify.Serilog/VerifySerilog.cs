@@ -4,7 +4,7 @@ public static class VerifySerilog
 {
     public static bool Initialized { get; private set; }
 
-    public static void Initialize()
+    public static void Initialize(Action<LoggerConfiguration>? custom = null)
     {
         if (Initialized)
         {
@@ -24,10 +24,12 @@ public static class VerifySerilog
             _.Converters.Add(new StructureValueConverter());
         });
 
-        Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Verbose()
-            .Enrich.FromLogContext()
-            .WriteTo.Sink<VerifySink>()
-            .CreateLogger();
+        var configuration = new LoggerConfiguration();
+        configuration.MinimumLevel.Verbose();
+        var enrich = configuration.Enrich;
+        enrich.FromLogContext();
+        configuration.WriteTo.Sink<VerifySink>();
+        custom?.Invoke(configuration);
+        Log.Logger = configuration.CreateLogger();
     }
 }
