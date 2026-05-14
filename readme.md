@@ -30,15 +30,48 @@ Extends [Verify](https://github.com/VerifyTests/Verify) to allow verification of
 
 ## Usage
 
-<!-- snippet: Enable -->
-<a id='snippet-Enable'></a>
+
+### Setup
+
+Use `VerifySerilog.Initialize()`
+
 ```cs
 [ModuleInitializer]
 public static void Initialize() =>
     VerifySerilog.Initialize();
 ```
-<sup><a href='/src/Tests/ModuleInitializer.cs#L6-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-Enable' title='Start of snippet'>anchor</a></sup>
+
+Or omit the above is `VerifierSettings.InitializePlugins();` is called:
+
+
+```cs
+[ModuleInitializer]
+public static void Initialize() =>
+    VerifierSettings.InitializePlugins();
+```
+
+
+### LoggerConfiguration callback
+
+`VerifySerilog.Initialize` accepts an optional `Action<LoggerConfiguration>` callback for customising the underlying Serilog `LoggerConfiguration` — for example to register destructuring policies, enrichers, or filters. The callback runs after `MinimumLevel.Verbose`, `Enrich.FromLogContext`, and the `VerifySink` have been wired up, so it can layer on top of those defaults.
+
+<!-- snippet: Enable -->
+<a id='snippet-Enable'></a>
+```cs
+[ModuleInitializer]
+public static void Initialize() =>
+    VerifySerilog.Initialize(
+        _ => _.Destructure.ByTransforming<Customer>(
+            customer => new
+            {
+                customer.Name
+            }));
+```
+<sup><a href='/src/Tests/ModuleInitializer.cs#L6-L17' title='Snippet source file'>snippet source</a> | <a href='#snippet-Enable' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
+
+
+### Recording and writing logs
 
 <!-- snippet: Usage -->
 <a id='snippet-Usage'></a>
