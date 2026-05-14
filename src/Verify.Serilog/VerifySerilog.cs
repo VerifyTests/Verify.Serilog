@@ -21,6 +21,7 @@ public static class VerifySerilog
             _.Converters.Add(new ScalarValueConverter());
             _.Converters.Add(new PropertyEnricherConverter());
             _.Converters.Add(new DictionaryValueConverter());
+            _.Converters.Add(new StructureValueConverter());
         });
 
         Log.Logger = new LoggerConfiguration()

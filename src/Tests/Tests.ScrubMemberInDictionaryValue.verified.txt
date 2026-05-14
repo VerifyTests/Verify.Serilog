@@ -1,0 +1,12 @@
+﻿{
+  target: Result,
+  log: {
+    Information: {@Data},
+    Properties: {
+      Data: {
+        Visible: ok,
+        Secret: {Scrubbed}
+      }
+    }
+  }
+}
