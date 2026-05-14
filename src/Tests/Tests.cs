@@ -125,4 +125,14 @@ public class Tests
         return Verify("Result")
             .ScrubMember("Secret");
     }
+
+    [Test]
+    public Task IgnoreMemberInPropertyEnricher() =>
+        Verify(new PropertyEnricher("Secret", "hideme"))
+            .IgnoreMember("Secret");
+
+    [Test]
+    public Task ScrubMemberInPropertyEnricher() =>
+        Verify(new PropertyEnricher("Secret", "hideme"))
+            .ScrubMember("Secret");
 }

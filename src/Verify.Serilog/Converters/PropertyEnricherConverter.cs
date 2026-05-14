@@ -10,18 +10,7 @@
     public override void Write(VerifyJsonWriter writer, PropertyEnricher enricher)
     {
         writer.WriteStartObject();
-        var name = Name(enricher);
-        var value = Value(enricher);
-        writer.WritePropertyName(name);
-        if (value == null)
-        {
-            writer.WriteNull();
-        }
-        else
-        {
-            writer.Serialize(value);
-        }
-
+        writer.WriteMember(enricher, Value(enricher), Name(enricher));
         writer.WriteEndObject();
     }
 }
