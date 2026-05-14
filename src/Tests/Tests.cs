@@ -141,6 +141,15 @@ public class Tests
     #endregion
 
     [Test]
+    public Task StructureValueWithNullScalarProperty() =>
+        Verify(
+            new StructureValue(
+            [
+                new("Name", new ScalarValue(null)),
+                new("Other", new ScalarValue("value"))
+            ]));
+
+    [Test]
     public Task IgnoreMemberInPropertyEnricher() =>
         Verify(new PropertyEnricher("Secret", "hideme"))
             .IgnoreMember("Secret");

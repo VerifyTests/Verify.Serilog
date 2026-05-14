@@ -3,9 +3,12 @@
 {
     public override void Write(VerifyJsonWriter writer, ScalarValue value)
     {
-        if (value.Value != null)
+        if (value.Value == null)
         {
-            writer.Serialize(value.Value);
+            writer.WriteNull();
+            return;
         }
+
+        writer.Serialize(value.Value);
     }
 }
