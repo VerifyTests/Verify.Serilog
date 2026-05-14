@@ -65,4 +65,64 @@ public class Tests
             [
                 new(new(Guid.NewGuid()), new ScalarValue("value"))
             ]));
+
+    [Test]
+    public Task IgnoreMemberInDictionaryValue()
+    {
+        Recording.Start();
+        Log.Information(
+            "{@Data}",
+            new Dictionary<string, object>
+            {
+                ["Visible"] = "ok",
+                ["Secret"] = "hideme"
+            });
+        return Verify("Result")
+            .IgnoreMember("Secret");
+    }
+
+    [Test]
+    public Task IgnoreMemberInStructure()
+    {
+        Recording.Start();
+        Log.Information(
+            "{@Data}",
+            new
+            {
+                Visible = "ok",
+                Secret = "hideme"
+            });
+        return Verify("Result")
+            .IgnoreMember("Secret");
+    }
+
+    [Test]
+    public Task ScrubMemberInDictionaryValue()
+    {
+        Recording.Start();
+        Log.Information(
+            "{@Data}",
+            new Dictionary<string, object>
+            {
+                ["Visible"] = "ok",
+                ["Secret"] = "hideme"
+            });
+        return Verify("Result")
+            .ScrubMember("Secret");
+    }
+
+    [Test]
+    public Task ScrubMemberInStructure()
+    {
+        Recording.Start();
+        Log.Information(
+            "{@Data}",
+            new
+            {
+                Visible = "ok",
+                Secret = "hideme"
+            });
+        return Verify("Result")
+            .ScrubMember("Secret");
+    }
 }
