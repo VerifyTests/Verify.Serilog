@@ -149,6 +149,38 @@ public class Tests
                 new("Other", new ScalarValue("value"))
             ]));
 
+    [ModuleInitializer]
+    public static void IgnoreSourceContextInit()
+    {
+        VerifySerilog.IgnoreSourceContext<IgnoredSource>();
+        VerifySerilog.IgnoreSourceContext("Some.Namespace.IgnoredByName");
+    }
+
+    [Test]
+    public Task IgnoreSourceContextGeneric()
+    {
+        Recording.Start();
+
+        Log.ForContext<IgnoredSource>().Error("Hidden");
+        Log.ForContext<KeptSource>().Error("Visible");
+
+        return Verify("Result");
+    }
+
+    [Test]
+    public Task IgnoreSourceContextString()
+    {
+        Recording.Start();
+
+        Log.ForContext("SourceContext", "Some.Namespace.IgnoredByName").Error("Hidden");
+        Log.ForContext("SourceContext", "Some.Namespace.Kept").Error("Visible");
+
+        return Verify("Result");
+    }
+
+    class IgnoredSource;
+    class KeptSource;
+
     [Test]
     public Task IgnoreMemberInPropertyEnricher() =>
         Verify(new PropertyEnricher("Secret", "hideme"))

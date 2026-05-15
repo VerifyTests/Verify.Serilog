@@ -71,6 +71,18 @@ public static void Initialize() =>
 <!-- endSnippet -->
 
 
+### Ignoring messages by SourceContext
+
+`VerifySerilog.IgnoreSourceContext` filters out log events whose `SourceContext` property matches a known type or string. Generic and string overloads are provided. Typically called from the module initializer alongside `Initialize`.
+
+```cs
+VerifySerilog.IgnoreSourceContext<MyNoisyType>();
+VerifySerilog.IgnoreSourceContext("Some.Namespace.Logger");
+```
+
+Events emitted via `Log.ForContext<T>()` or `Log.ForContext("SourceContext", "...")` whose source context matches are dropped before being recorded.
+
+
 ### Recording and writing logs
 
 <!-- snippet: Usage -->
