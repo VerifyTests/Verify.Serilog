@@ -1,8 +1,19 @@
-﻿namespace VerifyTests;
+namespace VerifyTests;
 
 public static class VerifySerilog
 {
     public static bool Initialized { get; private set; }
+
+    internal static HashSet<string> IgnoredSourceContexts { get; } = [];
+
+    public static void IgnoreSourceContext<T>() =>
+        IgnoreSourceContext(typeof(T).FullName!);
+
+    public static void IgnoreSourceContext(string sourceContext)
+    {
+        InnerVerifier.ThrowIfVerifyHasBeenRun();
+        IgnoredSourceContexts.Add(sourceContext);
+    }
 
     public static void Initialize(Action<LoggerConfiguration>? custom = null)
     {

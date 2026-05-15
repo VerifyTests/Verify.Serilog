@@ -1,0 +1,9 @@
+﻿{
+  target: Result,
+  log: {
+    Error: Visible,
+    Properties: {
+      SourceContext: Tests+KeptSource
+    }
+  }
+}
