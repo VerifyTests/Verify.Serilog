@@ -1,5 +1,4 @@
-﻿[TestFixture]
-public class Tests
+﻿public class Tests
 {
     #region Usage
 
